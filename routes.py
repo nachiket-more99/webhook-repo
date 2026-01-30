@@ -3,6 +3,7 @@ from db import events_collection
 from services.github_service import process_push_event, process_pr_event
 from utils.formatting import format_event_timestamp
 
+
 def app_routes(app):
     @app.route("/")
     def home():
@@ -22,7 +23,7 @@ def app_routes(app):
 
     @app.route("/events", methods=["GET"])
     def get_events():
-        events = list(events_collection.find().sort("timestamp", -1))
+        events = list(events_collection.find().sort("created_at", -1))
         for e in events:
             e["_id"] = str(e["_id"])
             e["timestamp"] = format_event_timestamp(e.get("timestamp"))

@@ -11,9 +11,15 @@ async function loadEvents() {
 
       if (e.action === "PUSH") {
         text = `"${e.author}" pushed to "${e.to_branch}" on ${e.timestamp}`;
-      } else if (e.action === "PULL_REQUEST") {
+      } 
+      else if (e.action === "PULL_REQUEST") {
         text = `"${e.author}" submitted a pull request from "${e.from_branch}" to "${e.to_branch}" on ${e.timestamp}`;
+      } 
+      else if (e.action === "MERGE") {
+        text = `"${e.author}" merged branch "${e.from_branch}" to "${e.to_branch}" on ${e.timestamp}`;
       }
+
+      if (!text) return;
 
       const div = document.createElement("div");
       div.className = "event";
