@@ -26,4 +26,4 @@ async function loadEvents() {
 }
 
 loadEvents();
-// setInterval(loadEvents, 15000);
+setInterval(loadEvents, 15000);
